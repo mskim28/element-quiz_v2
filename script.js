@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     const elements = {
         "H": "수소", "He": "헬륨", 
-        // "Li": "리튬", "Be": "베릴륨", "B": "붕소",
-        // "C": "탄소", "N": "질소", "O": "산소", "F": "플루오린", "Ne": "네온",
-        // "Na": "나트륨(소듐)", "Mg": "마그네슘", "Al": "알루미늄", "Si": "규소", "P": "인",
-        // "S": "황", "Cl": "염소", "Ar": "아르곤", "K": "칼륨(포타슘)", "Ca": "칼슘",
-        // "Fe": "철", "Cu": "구리", "Zn": "아연", "Ag": "은", "Au": "금",
-        // "I": "아이오딘", "Pb": "납", "Hg": "수은", "Mn": "망가니즈", "Ba": "바륨"
+        "Li": "리튬", "Be": "베릴륨", "B": "붕소",
+        "C": "탄소", "N": "질소", "O": "산소", "F": "플루오린", "Ne": "네온",
+        "Na": "나트륨(소듐)", "Mg": "마그네슘", "Al": "알루미늄", "Si": "규소", "P": "인",
+        "S": "황", "Cl": "염소", "Ar": "아르곤", "K": "칼륨(포타슘)", "Ca": "칼슘",
+        "Fe": "철", "Cu": "구리", "Zn": "아연", "Ag": "은", "Au": "금",
+        "I": "아이오딘", "Pb": "납", "Hg": "수은", "Mn": "망가니즈", "Ba": "바륨",
     };
 
     const alternativeNames = {
@@ -286,12 +286,14 @@ document.addEventListener("DOMContentLoaded", () => {
             // 사용자 이름, 최종 점수, 표 등
             exportContainer.innerHTML = `
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <h1 style="font-size:1.7em; margin-top: 50px; margin-bottom: 10px;"> < 퀴즈 결과 분석 > </h1>
-                    <p style="font-size:1em; margin-bottom:5px;">사용자: ${userName}</p>
-                    <p style="font-size:1em;">${finalScoreDisplay.textContent}</p>
+                    <h1 style="font-size:1.5em; margin-top: 40px; margin-bottom: 10px;"> < 퀴즈 결과 분석 > </h1>
+                    <p style="font-size:0.9em; margin-bottom:5px;">사용자: ${userName}</p>
+                    <p style="font-size:0.9em;">${finalScoreDisplay.textContent}</p>
                     <hr style="margin:20px 0; border: none; border-top: 1px solid #ccc;">
                 </div>
-                ${analysisDetails.innerHTML}
+                <div style="font-size:0.9em;">
+                    ${analysisDetails.innerHTML}
+                </div>
             `;
 
             document.body.appendChild(exportContainer);
@@ -380,7 +382,7 @@ document.addEventListener("DOMContentLoaded", () => {
         currentIndex = 0;
         userNameInput.value = "";
         userName = "";
-        
+
         startScreen.style.display = "block";
     });
 
