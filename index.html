@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>👩‍🏫 수정쌤과 함께하는 원소 퀴즈!✨</title>
+  <!-- 외부 스타일이 있다면 styles.css 파일로 연결 -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- pdf 내보내기에 필요한 라이브러리 (html2canvas, jsPDF) CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- 퀴즈 시작 화면 -->
+  <div id="startScreen" class="start-container">
+      <img src="fig.jpg" alt="원소 퀴즈 이미지" class="quiz-image">
+      <h1>원소 퀴즈를 시작하시겠습니까?</h1>
+      <!-- 사용자 정보 입력란 -->
+      <input type="text" id="userNameInput" placeholder="이름 입력">
+      <button id="startQuiz">퀴즈 시작!</button>
+  </div>
+
+  <!-- 퀴즈 유형 선택 화면 -->
+  <div id="typeSelectionScreen" class="start-container" style="display:none;">
+      <h1>✅ 퀴즈 유형을 선택해주세요!</h1>
+      <select id="quizType">
+          <option value="symbolToName">원소 기호 → 원소 이름</option>
+          <option value="nameToSymbol">원소 이름 → 원소 기호</option>
+          <option value="mixed">원소 기호 ↔ 원소 이름</option>
+      </select>
+      <button id="confirmType">선택 완료</button>
+  </div>
+
+  <!-- 퀴즈 화면 -->
+  <div id="quizScreen" class="quiz-container" style="display:none;">
+      <div class="header-container">
+          <h1>👩‍🏫 수정쌤과 함께하는 원소 퀴즈!✨</h1>
+      </div>
+      <div id="question" class="question-box"></div>
+      <input type="text" id="userInput" placeholder="정답 입력">
+      <button id="submit">제출</button>
+      <button id="reveal" class="reveal-btn" style="display:none;">정답 확인</button>
+      <button id="next" class="next-btn" style="display:none;">다음 문제</button>
+      <button id="stop" class="stop-btn">퀴즈 종료</button>
+      <p id="result"></p>
+      <p id="scoreDisplay" class="score-box">점수: 0 | 정답 개수: 0 | 오답 개수: 0</p>
+      <!-- 진행률 표시 -->
+      <p id="progressDisplay" class="progress-box">문제: 0/30 (남은 문제: 30)</p>
+      <p id="highScoreDisplay" class="score-box" style="display:none;">최고 점수: 0</p>
+  </div>
+
+  <!-- 최종 결과 화면 (퀴즈 30문제 완료 시) -->
+  <div id="finalScreen" class="start-container" style="display:none;">
+      <h1>퀴즈가 종료되었습니다!</h1>
+      <p id="finalScore"></p>
+      <button id="analyzeBtn">결과 분석</button>
+      <!-- 결과 분석 내역이 표 형식으로 나타남 -->
+      <div id="analysisDetails" style="display:none;"></div>
+      <button id="restartQuizFinal">퀴즈 다시 시작</button>
+  </div>
+
+  <!-- 우리가 분리해둔 JS 파일 연결 -->
+  <script src="script.js"></script>
+
+</body>
+</html>
