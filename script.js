@@ -273,26 +273,36 @@ document.addEventListener("DOMContentLoaded", () => {
         exportBtnInner.style.margin = "10px";
         analysisDetails.appendChild(exportBtnInner);
 
+
         // PDF 내보내기 이벤트
         exportBtnInner.addEventListener("click", () => {
-            // 임시 컨테이너에 사용자 정보 + 결과 + 분석 표를 모두 넣어둠
+            // analysisDetails를 클론하여 원본에는 영향을 주지 않음
+            const analysisClone = analysisDetails.cloneNode(true);
+            // 클론된 요소에서 "파일 내보내기" 버튼 제거 (id가 exportBtnInner인 요소)
+            const exportButton = analysisClone.querySelector("#exportBtnInner");
+            if (exportButton) {
+                exportButton.remove();
+            }
+
+            // 임시 컨테이너에 사용자 정보 + 결과 + 분석 표(버튼 제거된 클론의 내용)를 넣음
             const exportContainer = document.createElement("div");
             exportContainer.style.position = "absolute";
             exportContainer.style.left = "-9999px";
             exportContainer.style.width = "800px";
-            exportContainer.style.padding = "0 40px"; // 좌우에 20px의 패딩 추가
+            exportContainer.style.padding = "0 40px"; // 좌우에 40px의 패딩 (20px씩)
             exportContainer.style.fontFamily = "sans-serif"; 
 
-            // 사용자 이름, 최종 점수, 표 등
             exportContainer.innerHTML = `
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <h1 style="font-size:1.5em; margin-top: 40px; margin-bottom: 10px;"> < 퀴즈 결과 분석 > </h1>
-                    <p style="font-size:0.9em; margin-bottom:5px;">사용자: ${userName}</p>
-                    <p style="font-size:0.9em;">${finalScoreDisplay.textContent}</p>
+                    <h1 style="font-size:1.4em; margin-top: 30px; margin-bottom: 10px;"> < 퀴즈 결과 분석 > </h1>
+                    <p style="font-size:0.9em; margin-bottom:5px;">
+                        <span>📍 사용자: ${userName}</span>
+                        <span style="margin-left: 40px;">✅ ${finalScoreDisplay.textContent}</span>
+                    </p>
                     <hr style="margin:20px 0; border: none; border-top: 1px solid #ccc;">
                 </div>
                 <div style="font-size:0.9em;">
-                    ${analysisDetails.innerHTML}
+                    ${analysisClone.innerHTML}
                 </div>
             `;
 
@@ -317,7 +327,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 pdf.addImage(imgData, "PNG", 0, position, pdfImgWidth, pdfImgHeight);
                 heightLeft -= pageHeight;
 
-                // 한 페이지에 다 안 들어갈 경우 자동으로 페이지 생성
+                // 이미지가 한 페이지에 다 들어가지 않을 경우 추가 페이지 생성
                 while (heightLeft > 0) {
                     position = heightLeft - pdfImgHeight;
                     pdf.addPage();
@@ -329,6 +339,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.body.removeChild(exportContainer);
             });
         });
+
+
+
+
+
     });
 
     
