@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const elements = {
-        "H": "수소", "He": "헬륨", 
-        "Li": "리튬", "Be": "베릴륨", "B": "붕소",
+        "H": "수소", "He": "헬륨", "Li": "리튬", "Be": "베릴륨", "B": "붕소",
         "C": "탄소", "N": "질소", "O": "산소", "F": "플루오린", "Ne": "네온",
         "Na": "나트륨(소듐)", "Mg": "마그네슘", "Al": "알루미늄", "Si": "규소", "P": "인",
         "S": "황", "Cl": "염소", "Ar": "아르곤", "K": "칼륨(포타슘)", "Ca": "칼슘",
@@ -57,9 +56,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const scoreDisplay = document.getElementById("scoreDisplay");
     const progressDisplay = document.getElementById("progressDisplay");
 
+    // function shuffleArray(array) {
+    //     return array.sort(() => Math.random() - 0.5);
+    // }
+
     function shuffleArray(array) {
-        return array.sort(() => Math.random() - 0.5);
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
     }
+    
 
     function initializeQuiz() {
         shuffledElements = shuffleArray(Object.keys(elements));
