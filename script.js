@@ -294,8 +294,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             exportContainer.innerHTML = `
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <h1 style="font-size:1.4em; margin-top: 30px; margin-bottom: 10px;"> < 퀴즈 결과 분석 > </h1>
-                    <p style="font-size:0.9em; margin-bottom:5px;">
+                    <h1 style="font-size:1.5em; margin-top: 30px; margin-bottom: 10px;"> < 퀴즈 결과 분석 > </h1>
+                    <p style="font-size:0.8em; margin-bottom:5px;">
                         <span>📍 사용자: ${userName}</span>
                         <span style="margin-left: 40px;">✅ ${finalScoreDisplay.textContent}</span>
                     </p>
