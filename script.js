@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     const elements = {
-        "H": "수소", "He": "헬륨", "Li": "리튬", "Be": "베릴륨", "B": "붕소",
-        "C": "탄소", "N": "질소", "O": "산소", "F": "플루오린", "Ne": "네온",
-        "Na": "나트륨(소듐)", "Mg": "마그네슘", "Al": "알루미늄", "Si": "규소", "P": "인",
-        "S": "황", "Cl": "염소", "Ar": "아르곤", "K": "칼륨(포타슘)", "Ca": "칼슘",
-        "Fe": "철", "Cu": "구리", "Zn": "아연", "Ag": "은", "Au": "금",
-        "I": "아이오딘", "Pb": "납", "Hg": "수은", "Mn": "망가니즈", "Ba": "바륨"
+        "H": "수소", "He": "헬륨", 
+        // "Li": "리튬", "Be": "베릴륨", "B": "붕소",
+        // "C": "탄소", "N": "질소", "O": "산소", "F": "플루오린", "Ne": "네온",
+        // "Na": "나트륨(소듐)", "Mg": "마그네슘", "Al": "알루미늄", "Si": "규소", "P": "인",
+        // "S": "황", "Cl": "염소", "Ar": "아르곤", "K": "칼륨(포타슘)", "Ca": "칼슘",
+        // "Fe": "철", "Cu": "구리", "Zn": "아연", "Ag": "은", "Au": "금",
+        // "I": "아이오딘", "Pb": "납", "Hg": "수은", "Mn": "망가니즈", "Ba": "바륨"
     };
 
     const alternativeNames = {
@@ -214,7 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
     analyzeBtn.addEventListener("click", () => {
         // 테이블 스타일링 포함하여 resultDetails를 HTML로 변환
         let analysisHTML = `
-            <table style="border-collapse: collapse; width: 100%; margin-bottom: 20px;">
+            <table style="border-collapse: collapse; width: calc(100% - 40px); margin: 0 20px 20px 20px;">
                 <thead>
                     <tr style="background-color: #f5f5f5;">
                         <th style="border: 1px solid #ccc; padding: 8px;">문제 번호</th>
@@ -278,15 +279,16 @@ document.addEventListener("DOMContentLoaded", () => {
             const exportContainer = document.createElement("div");
             exportContainer.style.position = "absolute";
             exportContainer.style.left = "-9999px";
-            exportContainer.style.width = "800px"; 
+            exportContainer.style.width = "800px";
+            exportContainer.style.padding = "0 40px"; // 좌우에 20px의 패딩 추가
             exportContainer.style.fontFamily = "sans-serif"; 
 
             // 사용자 이름, 최종 점수, 표 등
             exportContainer.innerHTML = `
                 <div style="text-align: center; margin-bottom: 20px;">
-                    <h1 style="margin-bottom: 10px;"> <퀴즈 결과 분석> </h1>
-                    <p style="font-size:1.1em; margin-bottom:5px;">사용자: ${userName}</p>
-                    <p style="font-size:1.1em;">${finalScoreDisplay.textContent}</p>
+                    <h1 style="font-size:1.7em; margin-top: 50px; margin-bottom: 10px;"> < 퀴즈 결과 분석 > </h1>
+                    <p style="font-size:1em; margin-bottom:5px;">사용자: ${userName}</p>
+                    <p style="font-size:1em;">${finalScoreDisplay.textContent}</p>
                     <hr style="margin:20px 0; border: none; border-top: 1px solid #ccc;">
                 </div>
                 ${analysisDetails.innerHTML}
@@ -335,13 +337,16 @@ document.addEventListener("DOMContentLoaded", () => {
         analysisDetails.style.display = "none";
         resultDetails = [];
         currentAttempts = [];
+        // 사용자 이름 입력 필드와 변수 초기화
+        userNameInput.value = "";
+        userName = "";
         startScreen.style.display = "block";
     });
 
     startQuizBtn.addEventListener("click", () => {
         userName = userNameInput.value.trim();
         if (!userName) {
-            alert("이름을 입력해 주세요.");
+            alert("사용자 정보를 입력해 주세요.");
             return;
         }
         startScreen.style.display = "none";
@@ -358,6 +363,24 @@ document.addEventListener("DOMContentLoaded", () => {
     stopBtn.addEventListener("click", () => {
         alert(`** 원소 퀴즈 종료! **\n정답 개수: ${correctCount}\n오답 개수: ${incorrectCount}\n최종 점수: ${score}`);
         quizScreen.style.display = "none";
+
+
+        // 퀴즈 화면, 최종 화면, 분석 화면 숨기기
+        quizScreen.style.display = "none";
+        finalScreen.style.display = "none";
+        analysisDetails.innerHTML = "";
+        analysisDetails.style.display = "none";
+        
+        // 모든 변수 초기화
+        resultDetails = [];
+        currentAttempts = [];
+        score = 0;
+        correctCount = 0;
+        incorrectCount = 0;
+        currentIndex = 0;
+        userNameInput.value = "";
+        userName = "";
+        
         startScreen.style.display = "block";
     });
 
