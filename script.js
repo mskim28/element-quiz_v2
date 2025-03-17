@@ -272,7 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // "파일 내보내기" 버튼을 동적으로 추가
         let exportBtnInner = document.createElement("button");
         exportBtnInner.id = "exportBtnInner";
-        exportBtnInner.textContent = "파일 내보내기";
+        exportBtnInner.textContent = "결과 분석지 다운로드";
         exportBtnInner.style.padding = "10px 15px";
         exportBtnInner.style.border = "none";
         exportBtnInner.style.borderRadius = "5px";
